@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
+        <h1>Status Page
+            <small>Last updated: <small th:text="${execInfo.now.time}">Wed Feb 10 13:55:58 IST 2016</small></small>
+        </h1>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default status-panel">
+                <div class="list-group">
+
+                    <div th:if="${websiteError} == null" class="list-group-item status-ok">
+                        <h4 class="list-group-item-heading op">
+                           Website <span class="pull-right">Operational</span>
+                        </h4>
+                    </div>
+
+                    <div th:if="${websiteError} != null" class="list-group-item status-error">
+                        <h4 class="list-group-item-heading op">
+                            Website <span class="pull-right">Not operational</span>
+                        </h4>
+                    </div>
+
+                    <div th:if="${databaseError} == null" class="list-group-item status-ok">
+                        <h4 class="list-group-item-heading op">
+                            Database <span class="pull-right">Operational</span>
+                        </h4>
+                    </div>
+
+                    <div th:if="${databaseError} != null" class="list-group-item status-error">
+                        <h4 class="list-group-item-heading op">
+                            Database <span class="pull-right">Not operational</span>
+                        </h4>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/template :: footer">...</div>
+
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+
+<body th:inline="text">
+
+<div th:replace="fragments/template :: navbar">...</div>
+<!-- Begin page content -->
+<div class="container">
+    <div class="">
+        <!-- Introduction Row -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-header">About Text2QR-Translator
+                    <small>All about languages</small>
+                </h1>
+                <p>Text2QR Translator is a free service to create translations of texts. The translations are stored in our webservice an can be accessed with QRCodes which are generated through our client.
+                    Simply create an encrypted translation with powerful translation APIs.
+                    Then place the QR Code on any document you want. Only person who have the QR Code can access the translation.   </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="page-header">Our Team</h2>
+            </div>
+            <div class="col-md-6 text-center">
+                <img class="img-circle img-responsive img-center" src="/img/aweiss.jpg" alt="" />
+                <h3>Alexander Wei&szlig;
+                    <small>Student</small>
+                </h3>
+                <p>Developer of site and client</p>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/200x200" width="200" height="200" alt="" />
+                <h3>Oliver Erlenk&auml;mper
+                    <small>Supervisor</small>
+                </h3>
+                <p>Support during development</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/template :: footer">...</div>
+
+
+</body>
+</html>

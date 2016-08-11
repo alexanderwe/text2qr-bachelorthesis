@@ -1,0 +1,34 @@
+@startuml
+
+title sd04 decrypt (server-side)
+
+-> WebAppController: viewTranslation(id:String:, hexkey:String, ivhex:String)
+activate WebAppController
+WebAppController -> TranslationService: findTranslationById(id)
+activate TranslationService
+TranslationService --> WebAppController: translation:Translation
+deactivate TranslationService
+create SecretKeySpec
+
+WebAppController -> SecretKeySpec: new(key:byte[], algorithm:String)
+SecretKeySpec --> WebAppController: secretKey:SecretKey
+WebAppController --> Encryptor: setIv(ivhex:byte[])
+
+WebAppController -> Encryptor: decrypt(translationSourceContent:String, secretKey:SecretKey)
+activate Encryptor
+Encryptor --> WebAppController: decryptedSourceContent:String
+deactivate Encryptor
+
+WebAppController -> Encryptor: decrypt(translationTargetContent:String, secretKey:SecretKey)
+activate Encryptor
+Encryptor --> WebAppController: decryptedTargetContent:String
+deactivate Encryptor
+<-- WebAppController: encrypted content is decrypted
+deactivate WebAppController
+
+
+
+
+
+
+@enduml

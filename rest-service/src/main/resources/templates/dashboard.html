@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<link th:href="@{../css/style.css}" href="../css/style.css"  rel="stylesheet" type="text/css"  />
+
+
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+<div class="container">
+    <div class="page-header">
+        <h1>Dashboard</h1>
+    </div>
+    <div class="row dashboard-content">
+
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
+                <li role="presentation"><a href="#translations" aria-controls="translations" role="tab" data-toggle="tab">Translations</a></li>
+                <li role="presentation"><a href="#graphs" aria-controls="graphs" role="tab" data-toggle="tab" onclick="updateGraphs()">Graphs</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="users">
+                    <div th:if="${users != null}" class="col-md-12">
+                        <h2>Users</h2>
+                        <div class="dashboard-element-pre-header users-dashboard">
+                            <i class="fa fa-users fa-5x"></i>
+                            <span class="element-count">[[${usersCount}]]</span>
+                        </div>
+
+
+                        <div class="table-responsive ">
+                            <table class="table table-striped users-table" id="userTable">
+                                <thead>
+                                <tr>
+                                    <th data-sort="string">Username <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></th>
+                                    <th data-sort="string">Email <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></th>
+                                    <th data-sort="string">Role <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></th>
+                                    <th data-sort="string">Enabled <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></th>
+                                    <th data-sort="int">Translations <span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"></span></th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="user : ${users}">
+                                    <td th:text="${user.username}"> username </td>
+                                    <td th:text="${user.email}">email</td>
+                                    <td th:text="${user.user_authority}"> authority </td>
+                                    <td th:text="${user.enabled}">enabled</td>
+                                    <td th:text="${user.translation_count}">translation count</td>
+                                    <td class="buttons">
+                                        <button th:if ="${user.enabled}" type="button" class="btn btn-warning" id="disbale_user_button"> <a th:href="@{/admin/users/disable(uuid=${user.uuid})}" style="color:white;">Disable</a></button>
+                                        <button th:if ="${user.enabled}==false" type="button" class="btn btn-success" id="activate_user_button"> <a th:href="@{/admin/users/activate(uuid=${user.uuid})}" style="color:white;">Enable</a></button>
+                                        <button type="button" class="btn btn-danger pull-right" data-toggle="modal" th:attr="data-target='#deleteModal'+${user.uuid}" >Delete</button>
+                                    </td>
+
+
+                                    <!-- Modal for deleting this specific user-->
+                                    <div class="modal fade" th:attr="id='deleteModal'+${user.uuid}" role="dialog">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Delete user account</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Do you really want to delete [[${user.username}]]'s account ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-danger" id="delete_user_button"> <a th:href="@{/admin/users/delete(uuid=${user.uuid})}" style="color:white;">Delete account</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div><!-- .users table-->
+                    </div>
+                </div><!--tab pane user-->
+                <div role="tabpanel" class="tab-pane" id="translations">
+                    <div th:if="${translations != null}" class="col-md-12">
+                        <h2>Translations</h2>
+
+                        <div class="dashboard-element-pre-header translations-dashboard">
+                            <i class="fa fa-globe fa-5x"></i>
+                            <span class="element-count">[[${translationsCount}]]</span>
+                        </div>
+
+                        <div class="table-responsive dashboard-table-element table-hover">
+                            <table class="table table-striped" id="translationTable">
+                                <thead>
+                                <tr>
+                                    <th data-sort="int">ID <span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"></span></th>
+                                    <th data-sort="int">Requests <span class="glyphicon glyphicon-sort-by-order" aria-hidden="true"></span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="translation : ${translations}">
+                                    <td th:text="${translation.id}"> id </td>
+                                    <td th:text="${translation.requests}"> requests </td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div><!--.translations table -->
+                    </div><!--. translations div-->
+                </div> <!--translations tab-->
+
+                <div role="tabpanel" class="tab-pane" id="graphs">
+                    <div class="col-md-12">
+                        <h2>Charts</h2>
+
+                        <div class="dashboard-element-pre-header charts-dashboard">
+                            <i class="fa fa-bar-chart fa-5x"></i>
+                            <span class="element-count"></span>
+                        </div>
+                        <h3>Translation count by users</h3>
+                        <div class="ct-chart ct-golden-section" id="requestChart"></div>
+                        </div>
+                    </div>
+
+            </div> <!--tab content-->
+        </div>
+    </div><!--dashboard content-->
+</div><!--container-->
+
+<div th:replace="fragments/template :: footer">...</div>
+
+<script th:inline="javascript">
+// <![CDATA[
+
+
+    $( document ).ready(function() {
+        $('#translationTable').stupidtable();
+        $('#userTable').stupidtable();
+    });
+
+    function updateGraphs(){
+        var users = [[${users}]]
+        var usernames = new Array();
+        var requests = new Array();
+        for (i = 0; i < users.length; i++) {
+            usernames.push(users[i].username);
+            requests.push(users[i].translation_count);
+        }
+
+        console.log(usernames);
+        console.log(requests);
+
+        var options = {
+            width: '200px',
+            height: '300px'
+        };
+
+        // Initialize a Line chart in the container with the ID requestChart
+        new Chartist.Bar('#requestChart', {
+            labels: usernames,
+            series: [requests]
+            },{
+                seriesBarDistance: 10,
+                reverseData: true,
+                horizontalBars: true,
+                axisY: {
+                    offset: 30
+                }
+        },options);
+
+        console.log([[${users}]]);
+    }
+
+
+// ]]>
+
+</script>
+
+
+
+
+</body>
+</html>

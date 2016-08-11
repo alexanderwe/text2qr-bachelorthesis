@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+<!-- Begin page content -->
+<div class="container">
+    <h1>Endpoint</h1>
+    <div class="panel panel-default">
+        <div class="panel-heading">QR Code URL Link</div>
+        <div class="panel-body">
+            https://localhost:8443/?
+        </div>
+    </div><!--.panel-->
+    <div class="table-responsive">
+        <h3>Endpoint</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+                <th>Function</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>id</td>
+                <td>your_id</td>
+                <td>Unique identifier for a single translation</td>
+            </tr>
+            <tr>
+                <td>key</td>
+                <td>your_key</td>
+                <td>Your secret 128 Bit AES key formatted in the QR Code. Used for decrypting the translation in combination with the initialization vector.</td>
+            </tr>
+            <tr>
+                <td>iv</td>
+                <td>your_iv</td>
+                <td>Your unique initialization vector formatted in the QR Code. Used for decrypting the translation in combination with the secret key.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div th:replace="fragments/template :: footer">...</div>
+
+
+</body>
+</html>

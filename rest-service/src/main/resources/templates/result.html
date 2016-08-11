@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
+        <h1>Thank you for registration!</h1>
+    </div>
+
+    An email was sent to your email adress. To activate your account click the link in the mail. Also check your spam.
+    If you do not get the mail, you can send a new one by clicking this link:
+    <a class="btn btn-primary btn-lg" th:href="@{/register/activate/sendmail(uuid=${user.uuid})}"><i class="fa fa-envelope fa-1x"></i>Send email again</a>
+    <a href="/index" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>Take Me Home </a>
+
+</div>
+
+<div th:replace="fragments/template :: footer">...</div>
+
+</body>
+</html>

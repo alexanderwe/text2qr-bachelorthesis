@@ -1,0 +1,16 @@
+clipboard
+connection
+encryption
+listener
+model
+qrcode
+service
+ui
+ui.layout
+webservice
+webservice.configs
+webservice.connection
+webservice.controllers
+webservice.encryption
+webservice.model
+webservice.services

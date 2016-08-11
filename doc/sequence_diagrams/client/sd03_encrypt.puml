@@ -1,0 +1,21 @@
+@startuml
+title sd03 encrypt text (client-side)
+
+create Encryptor
+
+ -> Encryptor: :new
+Encryptor -> Encryptor: generateInitializationVector()
+activate Encryptor
+deactivate Encryptor
+
+
+--> Encryptor: generateSecretKey()
+-> Encryptor: encrypt(textToEncrypt:String)
+activate Encryptor
+Encryptor -> Encryptor: createCipher()
+ <-- Encryptor : encryptedText:String
+deactivate Encryptor
+
+
+
+@enduml

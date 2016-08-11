@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<body th:inline="text">
+    <div th:replace="fragments/template :: navbar">...</div>
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="">
+            <div class="page-header">
+                <h1>Download</h1>
+            </div>
+            <div class="download-section" id="download-section">
+
+                <h3>System requirements</h3>
+                <p>Download our client program on your computer to use our service. You simply need to create an account on our homepage and download the client.
+                We do not offer an possibility to create translation and QRCodes in the web interface, due to high security risks when creating encrypted translations.
+                </p>
+
+                <table class="table table-responsive">
+                    <tbody>
+                    <tr>
+                        <td>Operating system</td>
+                        <td id="os">Windows, MacOS, Linux</td>
+                    </tr>
+                    <tr>
+                        <td>Memory</td>
+                        <td id="memory">300mb</td>
+                    </tr>
+                    <tr>
+                        <td>Java</td>
+                        <td id="java"> Version 8</td>
+                    </tr>
+                    <tr>
+                        <td>Internet connection</td>
+                        <td id="internet">Required</td>
+                    </tr>
+                    <tr>
+                        <td>Text2QR Account</td>
+                        <td id="account">Required</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p class="text-muted" style="margin-top:20px;">You can choose which version you want to download. The .jar file can be run on every operating system. But be aware that you can not start the .jar on a windows system by double-clicking it.
+                On a MacOS or other Unix systems you can start the program by doble-clicking the .jar file. The .exe is only applicable for Windows systems and the .app Version only for MacOS. <strong>But keep in mind the client is not signed,
+                so it could appear that your OS warns you that the program can harm your system.</strong> </p>
+
+                <p><strong>Be aware that the .app file need to have permission to "control" your mac. Before the first start you have to set this permission in the system preferences --> pricacy --> operational tools --> add text2qr.app!</strong></p>
+
+
+
+
+                <div style="text-align: center">
+                    <a th:href="@{../../files/text2qr_jar.zip}" class="btn  btn-lg btn-success" style="width:50%; margin: 0 auto; margin-bottom:10px;"><span class="glyphicon glyphicon-download"></span> Download .jar(All OS)</a>
+                    <a th:href="@{../../files/text2qr_mac_osx.zip}" class="btn  btn-lg btn-success" style="width:50%; margin: 0 auto; margin-bottom:10px;"><span class="glyphicon glyphicon-download"></span> Download .app (MacOS)</a>
+                    <a th:href="@{../../files/text2qr_win.zip}" class="btn  btn-lg btn-success" style="width:50%; margin:0 auto;"><span class="glyphicon glyphicon-download"></span> Download .exe(Windows)</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="fragments/template :: footer">...</div>
+
+</body>
+</html>

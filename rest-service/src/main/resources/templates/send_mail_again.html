@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+
+
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
+        <h1>Email was sent again!</h1>
+    </div>
+
+        <div th:if="${enabled} ==null" >
+            We sent you another email. Check your inbox.
+            <a href="/index">Back to home</a>
+        </div>
+
+        <div th:if="${enabled} == true" class="alert alert-warning alert-dismissible" role="alert" id="edit_success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> Your account is already enabled
+        </div>
+</div>
+
+
+<div th:replace="fragments/template :: footer">...</div>
+
+</body>
+</html>

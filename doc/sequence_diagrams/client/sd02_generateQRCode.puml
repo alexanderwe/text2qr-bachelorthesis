@@ -1,0 +1,57 @@
+@startuml
+title sd02 generate QR-Code
+
+actor user
+activate user
+user -> HomeLayout: generateQRCode(translation:Translation)
+create Encryptor
+HomeLayout -> Encryptor: new
+
+Encryptor -> Encryptor: generateInitializationVector()
+activate Encryptor
+deactivate Encryptor
+
+HomeLayout --> Encryptor: generateSecretKey()
+activate Encryptor
+deactivate Encryptor
+
+HomeLayout -> Encryptor: encrypt(translationSourceContent:String)
+activate HomeLayout
+activate Encryptor
+Encryptor -> Encryptor: createCipher()
+Encryptor -->HomeLayout: encryptedSourceContent:String
+deactivate Encryptor
+deactivate HomeLayout
+
+
+HomeLayout -> Encryptor: encrypt(translationTargetContent:String)
+activate HomeLayout
+activate Encryptor
+Encryptor -> Encryptor: createCipher()
+Encryptor -->HomeLayout: encryptedTargetContent:String
+deactivate Encryptor
+
+create Translation
+HomeLayout -> Translation: new
+Translation --> HomeLayout: translation:Translation (with encrypted content)
+
+
+HomeLayout-> ConnectionService: postTranslation(translation)
+activate ConnectionService
+ConnectionService -> RestServiceConnection: postTranslation(translation)
+activate RestServiceConnection
+RestServiceConnection --> ConnectionService: response:String
+deactivate RestServiceConnection
+ConnectionService --> HomeLayout: new Translation(response)
+deactivate ConnectionService
+HomeLayout -> QRCodeManager: generateQRCode(url:String, width:int, height:int)
+activate QRCodeManager
+QRCodeManager --> HomeLayout: new BufferedImage()
+deactivate QRCodeManager
+deactivate HomeLayout
+HomeLayout --> user: QRCode generated
+deactivate user
+
+
+
+@enduml

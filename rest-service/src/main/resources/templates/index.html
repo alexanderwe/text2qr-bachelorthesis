@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
+        <h1>Your Translation</h1>
+    </div>
+
+
+    <p th:if="${nullError}">
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> No translation selected!
+    </div>
+    </p>
+
+    <div class="alert alert-warning" role="alert" style="display:none;" id="error400">
+        <strong>Warning!</strong> Mymemory does not support same source and targetlanguage!
+    </div>
+
+    <div class="alert alert-warning" role="alert" style="display:none;" id="error404">
+        <strong>Warning!</strong> Rsource could not load!
+    </div>
+
+    <div class="alert alert-warning" role="alert" style="display:none;" id="error500">
+        <strong>Warning!</strong> No translation selected!
+    </div>
+
+    <div class="alert alert-warning" role="alert" style="display:none;" id="error501">
+        <strong>Warning!</strong> This language is not supported by this translation provider!
+    </div>
+
+
+
+    <div class="form-group language_selector">
+        <label for="source_text">Source text:</label>
+        <textarea readonly="true" class="form-control" rows="5" id="source_text">[[${sourceContent}]]</textarea>
+        <label for="target_language_selector">Target language:</label>
+
+        <select class="form-control" id="target_language_selector">
+            <option th:each="language : ${languageList}" th:text="${language}" >language_code</option>
+        </select>
+
+
+        <label for="target_text">Target text:</label>
+        <textarea readonly="true" class="form-control" rows="5" id="target_text">[[${targetContent}]]</textarea>
+    </div>
+
+
+    <h3>Do you want another translation for your text ?</h3>
+
+
+    <div class="form-group">
+        <label for="translation_provider">Select translation provider:</label>
+        <select class="form-control" id="translation_provider">
+            <option>Bing Translation API</option>
+            <option>Google Translation API</option>
+            <option>mymemory.translated.net</option>
+        </select>
+    </div>
+
+    <button type="button" class="btn btn-default" onclick="generateNewTranslation()" id="generate_new_translation_button">Generate new translation</button>
+
+
+
+
+</div>
+
+<div th:replace="fragments/template :: footer">...</div>
+
+<script th:inline="javascript">
+// <![CDATA[
+        $( document ).ready(function() {
+            var targetLang = [[${targetLang}]];
+            var languageSelector =  $('#target_language_selector');
+
+          $("#target_language_selector > option").each(function() {
+            if(this.text.split(" -")[0] == targetLang){
+                var language = this.text;
+                $('#target_language_selector').val(language);
+            }
+          });
+
+
+        });
+
+        function generateNewTranslation(){
+            $('#error400').hide();
+            $('#error500').hide();
+            $('#error501').hide();
+            $('#generate_new_translation_button').html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...');
+
+            var id = [[${id}]];
+            var key = [[${key}]];
+            var iv =  [[${iv}]];
+            var newTargetLang = $("#target_language_selector option:selected").text().split(" -")[0].split(" ")[0];
+            var newProvider = $('#translation_provider').val();
+            var url = 'https://localhost:8443/newtranslation/?id=' +id+ '&key=' +key+ '&iv=' +iv+ '&newTargetLang=' +newTargetLang+ '&newProvider=' +newProvider;
+
+
+            $.ajax({
+        		type: 'get',
+				url: url,
+				success: function (response) {
+					$('#target_text').val(response);	// set new target content
+					$('#generate_new_translation_button').html('Generate translation');
+        		},
+        		error: function (xhr, ajaxOptions, thrownError) {
+        		    if(xhr.status==400){
+                        $('#error400').show();
+        		    }
+
+        		     if(xhr.status==404){
+                        $('#error404').show();
+            		 }
+
+        		     if(xhr.status==500){
+                        $('#error500').show();
+            		 }
+            		 if(xhr.status==501){
+                        $('#error501').show();
+            		 }
+
+                    $('#generate_new_translation_button').html('Generate translation');
+                }
+    	    });
+        }
+
+// ]]>
+    </script>
+</body>
+</html>

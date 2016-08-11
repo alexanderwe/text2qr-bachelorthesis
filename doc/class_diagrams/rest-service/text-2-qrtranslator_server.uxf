@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>2488</x>
+      <y>472</y>
+      <w>1024</w>
+      <h>448</h>
+    </coordinates>
+    <panel_attributes>model
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>272</x>
+      <y>0</y>
+      <w>584</w>
+      <h>824</h>
+    </coordinates>
+    <panel_attributes>configs
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>256</x>
+      <y>1288</y>
+      <w>1784</w>
+      <h>1432</h>
+    </coordinates>
+    <panel_attributes>controllers
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>32</y>
+      <w>384</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>@Configuration
+AuthenticationProviderConfig
+package::webservice.configs
+--
+@Bean(name = "dataSource")
++dataSource():DriverManagerDataSource 
+
+@Bean(name="userDetailsService")
++userDetailsService():UserDetailsService
+
+
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>160</y>
+      <w>392</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>@Configuration
+@EnableWebSecurity
+MultipleHttpSecurityConfig
+package:webservice.configs
+
+--
+@Autowired
+-userDetailsService:UserDetailsService 
+
+--
+@Autowired
++configureGlobal(auth:AuthenticationManagerBuilder):void
+
+@Bean(name="passwordEncoder")
++passwordEncoder():PasswordEncoder 
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>408</y>
+      <w>400</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;static&gt;&gt;
+@Configuration
+@Order(1)
+ApiWebSecurityConfigurationAdapter
+package:webservice.configs
+--
+#configure(http:HttpSecurity):void
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>16</x>
+      <y>432</y>
+      <w>176</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>WebSecurityConfigurerAdapter</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>424</y>
+      <w>112</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;extends&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>360</y>
+      <w>96</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt;inner class&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>544</y>
+      <w>400</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;static&gt;&gt;
+@Configuration
+FormLoginWebSecurityConfigurerAdapter
+package:webservice.configs
+--
+#configure(http:HttpSecurity):void
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>104</x>
+      <y>448</y>
+      <w>192</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;extends&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0;220.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>256</y>
+      <w>168</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+&lt;inner class&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0;100.0;400.0;20.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>680</y>
+      <w>192</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>WebMvcConfigurerAdapter</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>672</y>
+      <w>400</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>@Configuration
+MvcConfig
+package:webservice.configs
+--
++addViewControllers(registry:ViewControllerRegistry):void
++addResourceHandlers(registry:ResourceHandlerRegistry):void
++servletContainer():EmbeddedServletContainerFactory
+-initiateHttpConnector():Connector
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>672</y>
+      <w>112</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;extends&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>904</x>
+      <y>48</y>
+      <w>312</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Connection
+Package::connection
+
+--
+_-LOGGER:ORG:APACHE:LOGGING:LOG4J.LOGGER_
+--
++do_get(url:URL):String
++do_get_with_auth(url:URL,authToken:String):String
++do_post(url:URL,postString:String):void
++do_post_with_auth(url:URL,postString:String,authToken:String):String
++do_delete(url:URL):void
++do_get_with_auth(url:URL,authToken:String):String
++createALLCert():void
+-isHTTPS(url:URL):boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1208</x>
+      <y>80</y>
+      <w>208</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;extends&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;240.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1112</x>
+      <y>176</y>
+      <w>1056</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>10.0;260.0;10.0;320.0;1300.0;320.0;1300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>888</x>
+      <y>16</y>
+      <w>1568</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>connection
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1920</x>
+      <y>56</y>
+      <w>520</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>ConnectionService
+Package::connection
+
+--
+-microsoftTranslatorConnection:MicrosoftTranslatorConnection
+-googleTranslatorConnection:GoogleTranslatorConnection
+-myMemoryConnection:MyMemoryConnection
+--
++getTranslation(translationProvider:String, parameters:HashMap&lt;String,String&gt;:Translation
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1728</x>
+      <y>72</y>
+      <w>208</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;240.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>992</x>
+      <y>216</y>
+      <w>80</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;extends&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>1312</y>
+      <w>1216</w>
+      <h>456</h>
+    </coordinates>
+    <panel_attributes>@Controler
+AccountController
+package:controller
+--
+-userService:UserService
+-mailService:MailService
+--
+
+@RequestMapping(value="/login", method= RequestMethod.GET)
++showLogin(error:@RequestParam(value = "error", required = false) String, logout:@RequestParam(value = "logout", required = false) String,
+passwordreset:@RequestParam(value = "passwordreset", required = false) String , passwordchanged:@RequestParam(value = "passwordchange", required = false) String):ModelAndView 
+
+@RequestMapping(value="/login", method= RequestMethod.POST)
++showLogin(user:@ModelAttribute User, model:Model):String
+
+@RequestMapping(value="/login/resetpassword", method= RequestMethod.POST)
++resetPassword(userEmail:@RequestParam("email") String ):String
+
+@RequestMapping(value="/login/changepassword", method= RequestMethod.GET)
++changePassword(uuid:@RequestParam("uuid") String , token:@RequestParam("token") String, model:Model):String
+
+@@RequestMapping(value="/login/savepassword", method= RequestMethod.POST)
++savePassword(user:@ModelAttribute User):String
+
+@RequestMapping(value="/forgotpassword", method= RequestMethod.GET)
++showForgottpassword(error:@RequestParam(value = "error", required = false) String, tokenerror: @RequestParam(value = "tokenerror", required = false) String ):ModelAndView
+
+@RequestMapping(value="/account", method= RequestMethod.GET)
++showAccount(user:@ModelAttribute User , Model model, editsuccess: @RequestParam(value = "editsuccess", required = false) String , editerror:@RequestParam(value = "editerror", required = false) String):ModelAndView
+
+@RequestMapping(value="/account/changedetails", method= RequestMethod.POST)
++changeDetails(user:@ModelAttribute User, model:Model):String
+
+@RequestMapping(value="/account/delete", method= RequestMethod.GET)
++deleteAccount(uuid:@RequestParam(value="uuid", required=true, defaultValue="-1") String, user:@ModelAttribute User , model:Model):String
+
++manualLogout():void
+
+
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1088</x>
+      <y>1792</y>
+      <w>800</w>
+      <h>344</h>
+    </coordinates>
+    <panel_attributes>@Configuration
+APIController
+package:controller
+--
+-userService:UserService
+-translationService:TranslationService
+--
+
+@RequestMapping(value="/admin/api/translations",method= RequestMethod.GET, produces= MediaType.APPLICATION_JSON_VALUE)
++getTranslations():ResponseEntity&lt;List&lt;Translation&gt;&gt; 
+
+@RequestMapping(value="admin/api/translations/{id}", method= RequestMethod.DELETE)
++delete(id:@PathVariable("id") int ):ResponseEntity&lt;?&gt; 
+
+@RequestMapping(value="api/translations/{id}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
++getTranslation(id:@PathVariable("id") String):@ResponseBody ResponseEntity&lt;?&gt; 
+        
+@RequestMapping(value="api/translations", method= RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
++post(translation:@Valid @RequestBody Translation ):@ResponseBody ResponseEntity&lt;?&gt; 
+
+@RequestMapping(value="api/translations/{id}", method= RequestMethod.PATCH, produces=MediaType.APPLICATION_JSON_VALUE)
++patch(id:@PathVariable("id") int, translation:@RequestBody Translation ):@ResponseBody ResponseEntity&lt;?&gt; 
+
+@RequestMapping(value="api/checkuser/", method= RequestMethod.GET)
++checkUser():ResponseEntity&lt;String&gt; 
+
+-jsonError(request:HttpServletRequest:request, statuses:HttpStatus...):JSONObject
+
+
+
+
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>2288</y>
+      <w>1640</w>
+      <h>424</h>
+    </coordinates>
+    <panel_attributes>@Configuration
+WebAppController
+package:controller
+--
+-userService:UserService
+-maillService:MailService;
+-encryptor:Encryptor
+-translationService:TranslationService
+--
+
+ @RequestMapping("/")
++viewTranslation(id:@RequestParam(value="id", required=true, defaultValue="-1") String , hexkey:@RequestParam(value="key", required=true, defaultValue="-1") String ,
+ivhex:, @RequestParam(value="iv", required=true, defaultValue="-1") String ,model:Model):String
+
+@RequestMapping("/newtranslation")
++newTranslation(id:@RequestParam(value="id", required=true, defaultValue="-1") String, hexkey: @RequestParam(value="key", required=true, defaultValue="-1") String , ivhex: @RequestParam(value="iv", required=true, defaultValue="-1") String, 
+newTargetLang:@RequestParam(value="newTargetLang", required=true) String , newProvider: @RequestParam(value="newProvider", required=true) String , model:Model):ResponseEntity&lt;String&gt;
+        
+@RequestMapping("/index")
++showIndex(model:Model):String
+
+@RequestMapping(value="/contact", method= RequestMethod.GET)
++contact(success:@RequestParam(value="success", required=false) String, error:@RequestParam(value="error", required=false) String , model:Model):String
+
+@RequestMapping(value="/contact/sendmessage", method= RequestMethod.POST)
++sendContact(name:@RequestParam(value="name", required=true, defaultValue="name") String, email:@RequestParam(value="email", required=true, defaultValue="email") String , message: @RequestParam(value="message", required=true, defaultValue="message") String , Model model):String
+
+@RequestMapping("/status")
++showStatus(model:Model):String
+
+-getLanguageList():ArrayList&lt;String&gt; 
+        
+
+
+
+
+
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>1792</y>
+      <w>800</w>
+      <h>224</h>
+    </coordinates>
+    <panel_attributes>@Configuration
+RegisterController
+package:controller
+--
+-userService:UserService
+-mailService:MailService
+--
+@RequestMapping(value="/register", method=RequestMethod.GET)
++registerForm(model:Model):String
+
+@RequestMapping(value="/register", method=RequestMethod.POST)
++registerSubmit(user:@ModelAttribute User, model:Model):String
+
+@RequestMapping(value = "/register/activate/sendmail")
++sendMailAgain(uuid:@RequestParam(value="uuid", required=true, defaultValue="-1") String, user:@ModelAttribute User, model:Model):String
+
+@RequestMapping(value = "/register/activate")
++activateUser(uuid:@RequestParam(value="uuid", required=true, defaultValue="-1") String ):String
+        
+      
+
+
+
+
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>904</x>
+      <y>488</y>
+      <w>560</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>TranslationService
+package:database
+--
+-dataSource:MysqlDataSource
+-c:Connection
+-sdf:SimpleDateFormat
+_-LOGGER:ORG:APACHE:LOGGING:LOG4J.LOGGER_
+--
++connect():boolean
++disconnect():boolean
++insertTranslation(sourceContent:String, targetContent:String,sourceLang:String, targetLang:String):void
++insertTranslation(translation:Translation):void
++getTranslations():ArrayList&lt;Translation&gt;
++findTranslationById(id:int):Translation
++updateTranslation(id:int, translation:Translation):boolean
++deleteTranslation(id:int):boolean
++findID(id:int):boolean
++getLastID():int
+-isNull(obj:Object):boolean
+
+
+
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>904</x>
+      <y>736</y>
+      <w>808</w>
+      <h>304</h>
+    </coordinates>
+    <panel_attributes>UserService
+package:database
+--
+-dataSource:MysqlDataSource
+-c:Connection
+-dateTimeFormatter:DateTimeFormatter
+_-LOGGER:ORG:APACHE:LOGGING:LOG4J.LOGGER_
+--
++connect():boolean
++disconnect():boolean
++getAllUsers():ArrayList&lt;User&gt;
++insertUser(username:String, password:String, email:String, user_authority:User_Authority, enabled:boolean, uuid:String, age:LocalDateTime):void
++findUserByUUID(uuid:String):User
++findUserByName(name:String):User
++findUserByEmail(email:String):User
++updatePassword(uuid:String, password:String):boolean
++updateEmail(uuid:String, email:String):boolean
++increaseTranslationCount(username:String):void
++activateUser(uuid:String):void
++enableUser(uuid:String):void
++deleteUserByUUID(uuid:String):void
++insertPasswordResetToken(token:PasswordResetToken):void
++findPasswordResetTokenByToken(token:String):PasswordResetToken
++makePasswordTokenInvalidByUUID(uuid:String):void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>2216</x>
+      <y>1632</y>
+      <w>352</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>encryption
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>656</x>
+      <y>88</y>
+      <w>216</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses
+datasource&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0;170.0;200.0;20.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2504</x>
+      <y>496</y>
+      <w>776</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>@Component
+JsonDateSerializer
+package:model
+--
+_-dateFormat:SimpleDateFormat_
+
+--
++serialize(jsonGenerater:com.fasterxml.jackson.core.JsonGenerator, serializeProver:com.fasterxml.jackson.databind.SerializerProvider):void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2848</x>
+      <y>376</y>
+      <w>304</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>com.fasterxml.jackson.databind.JsonSerializer&lt;Date&gt; </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2968</x>
+      <y>392</y>
+      <w>80</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;extends&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2504</x>
+      <y>600</y>
+      <w>368</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>User
+package:model
+--
+-username:String
+-email:String
+-password:String
+-enabled:boolean
+-uuid:String
+-user_authority:User_Authority
+-translation_count:int
+-age:LocalDateTime
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2912</x>
+      <y>600</y>
+      <w>120</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+User_Authority
+package:model
+--
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2864</x>
+      <y>608</y>
+      <w>64</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>60.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2912</x>
+      <y>680</y>
+      <w>216</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>Translation
+package:model
+--
+-id:int
+@NotNull
+-sourceContent:String
+@NotNull
+-targetContent:String
+@NotNull
+-sourceLang:String
+@NotNull
+-targetLang:Strin
+@NotNullg
+-double:match
+-age:Date
+-requests:int
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1840</x>
+      <y>608</y>
+      <w>520</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>MailService
+package:services
+--
+mailSender:JavaMailSender
+--
+@Bean
++mailSender():JavaMailSender
+
+-configProperties():Properties
+-javaMailProperties():Properties
++sendRegisterMail(user:User):void
++sendResetPasswordMail(token:PasswordResetToken):void
++sendPasswordChangedMail(user:User):void
++sendContactFormSubmitToAdmin(name:String, useremail:String, usermessage:String):void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2352</x>
+      <y>736</y>
+      <w>832</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>1020.0;60.0;1020.0;300.0;130.0;300.0;130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1944</x>
+      <y>496</y>
+      <w>376</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>TranslationGenerator
+paclage:services
+--
+-conectionService:ConnectionService
+--
++generateTranslation(parameters:HashMayp&lt;String,String&gt;):String
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2272</x>
+      <y>1248</y>
+      <w>552</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>@SpringBootApplication
+@EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
+Application
+package:.
+--
+_main(args:String[]):void_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1472</x>
+      <y>776</y>
+      <w>744</w>
+      <h>800</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>860.0;10.0;860.0;980.0;10.0;980.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>776</y>
+      <w>1088</w>
+      <h>1392</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>1340.0;10.0;1340.0;1720.0;30.0;1720.0;30.0;1480.0;10.0;1480.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1896</x>
+      <y>2144</y>
+      <w>112</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;270.0;120.0;270.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1896</x>
+      <y>1760</y>
+      <w>344</w>
+      <h>752</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>410.0;10.0;200.0;10.0;200.0;920.0;10.0;920.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>888</x>
+      <y>464</y>
+      <w>1552</w>
+      <h>720</h>
+    </coordinates>
+    <panel_attributes>services
+--
+bg=orange
+layer=0
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2352</x>
+      <y>648</y>
+      <w>168</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2168</x>
+      <y>176</y>
+      <w>64</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1704</x>
+      <y>736</y>
+      <w>976</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>1150.0;10.0;1150.0;100.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1624</x>
+      <y>1032</y>
+      <w>520</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;270.0;630.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1472</x>
+      <y>1032</y>
+      <w>176</w>
+      <h>368</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>150.0;10.0;150.0;440.0;10.0;440.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>600</y>
+      <w>752</w>
+      <h>1936</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=2</panel_attributes>
+    <additional_attributes>920.0;10.0;890.0;10.0;890.0;440.0;10.0;440.0;10.0;2400.0;120.0;2400.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>872</x>
+      <y>544</y>
+      <w>1088</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>1340.0;10.0;1100.0;10.0;1100.0;230.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1704</x>
+      <y>1016</y>
+      <w>352</w>
+      <h>832</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>10.0;10.0;370.0;10.0;370.0;1020.0;230.0;1020.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>560</y>
+      <w>384</w>
+      <h>1248</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>10.0;20.0;460.0;20.0;460.0;1540.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2312</x>
+      <y>536</y>
+      <w>640</w>
+      <h>440</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;
+layer=1</panel_attributes>
+    <additional_attributes>780.0;440.0;780.0;530.0;190.0;530.0;190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>576</y>
+      <w>1024</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>1260.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2168</x>
+      <y>936</y>
+      <w>264</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;static&gt;&gt;
+ResourceManager
+--
+_+loadLanguageCodes():String_
+_+loadRegisterEmailTemplate():String_
+_+loadPasswordResetEmailTemplate():String_
+_+loadPasswordChangedEmailTemplate():String_
+_-loadResource(path:String)_
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2248</x>
+      <y>776</y>
+      <w>64</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1896</x>
+      <y>1072</y>
+      <w>352</w>
+      <h>1576</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>420.0;10.0;420.0;680.0;270.0;680.0;270.0;1950.0;10.0;1950.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1920</x>
+      <y>176</y>
+      <w>64</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1776</x>
+      <y>240</y>
+      <w>312</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>GoogleTranslatorConnection
+Package::connection
+
+--
+_-API_KEY:String_
+_-API_ENDPOINT:String_
+_-ENCODING:String_
+--
++getTranslation(parameters:HashMap(String,String)):Translation
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1208</x>
+      <y>192</y>
+      <w>584</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;extends&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;90.0;120.0;710.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1400</x>
+      <y>40</y>
+      <w>336</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>MicrosoftTranslatorConnection
+Package::connection
+
+--
+_-API_ENDPOINT:String_
+_-ENCODING:String_
+_-DATAMARKET_ACCESS_URI:String_
+_-CLIENT_ID:String_
+_-CLIENT_SECRET:Strin_
+_-SCOPE:String:_
+_-GRANT_TYPE:String_
+_-access_token:String_
+_access_token_valid:Date_
+_-LOGGER:ORG:APACHE:LOGGING:LOG4J.LOGGER_
+--
++getTranslation(parameters:HashMap&lt;String,String&gt;):Translation
+-getAccessToken():String
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>904</x>
+      <y>288</y>
+      <w>312</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>MyMemoryConnection
+Package::connection
+
+--
+_-API_ENDPOINT:String_
+_-ENCODING:String_
+--
++getTranslation(parameters:HashMap(String,String)):Translation
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>2032</y>
+      <w>800</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>@Configuration
+AdminController
+package:controller
+--
+-userService:UserService
+-translationService:TranslationService
+--
+@RequestMapping(value="/admin/dashboard", method= RequestMethod.GET)
++showDashboard(model:Model):String
+
+@RequestMapping(value="/admin/users/delete", method= RequestMethod.GET)
++deleteUser(uuid:@RequestParam(value="uuid", required=true, defaultValue="-1") String,  user:@ModelAttribute User, Model model):String
+
+@RequestMapping(value="/admin/users/disable", method= RequestMethod.GET)
++disbaleUser( uuid:@RequestParam(value="uuid", required=true, defaultValue="-1") String,  user:@ModelAttribute User,  model:Model):String
+        
+@RequestMapping(value="/admin/users/activate", method= RequestMethod.GET)
++activateUser(uuid:@RequestParam(value="uuid", required=true, defaultValue="-1") String,  user:@ModelAttribute User, model:Model):String
+        
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>2144</y>
+      <w>112</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>976</y>
+      <w>704</w>
+      <h>1136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>860.0;10.0;10.0;10.0;10.0;1400.0;60.0;1400.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2224</x>
+      <y>1664</y>
+      <w>312</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Encryptor
+Package::encryption
+
+--
+-aesCipherForEncryption:Cipher
+-AES_KEYLENGTH:int
+-iv:byte[]
+_-HEX:String_
+_-LOGGER:ORG:APACHE:LOGGING:LOG4J.LOGGER_
+--
+_+generateKey():SecretKey_
+-generateInitializationVector():void
+-createCipher():void
++encrypt(textToEncrypt:String,secretKey:Key):String
++decrypt(textToDecrypt:String, secretKey:Key):String
+_+getHex(raw:byte[]):String_
+_+hexStringToByteArray(s:String):byte[]_
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1424</x>
+      <y>776</y>
+      <w>1800</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>2230.0;10.0;2230.0;470.0;10.0;470.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3144</x>
+      <y>680</y>
+      <w>232</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>PasswordResetToken
+package:model
+--
+-user:User
+-token:String
+-age:LocalDateTime
+-expires:LocalDateTime
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1856</x>
+      <y>864</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>PropertyService
+Package::service
+--
+-properties:Properties
+--
+_+getServerUrl():String_
+_+getGoogelApiKey():String_
+_+getMicrosoftClientID():String_
+_+getMicrosoftApiKey():String_
+-loadProperties():Properties
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1952</x>
+      <y>776</y>
+      <w>64</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1776</x>
+      <y>360</y>
+      <w>96</w>
+      <h>536</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>100.0;650.0;10.0;650.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1688</x>
+      <y>240</y>
+      <w>184</w>
+      <h>720</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+&lt;uses&gt;</panel_attributes>
+    <additional_attributes>210.0;880.0;100.0;880.0;100.0;170.0;10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>

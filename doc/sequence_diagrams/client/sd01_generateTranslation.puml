@@ -1,0 +1,54 @@
+@startuml
+title sd01 Generate translation
+
+actor user
+
+activate user
+user -> TranslationGenerator: generateTranslation(parameters:HashMap)
+TranslationGenerator -> ConnectionService: generateTranslation(translationProvider:String, parameters:HashMap)
+activate TranslationGenerator
+alt translationProvider = mymemory.translated.net
+
+activate ConnectionService
+ConnectionService -> MyMemoryConnection: generateTranslation(parameters:HashMap)
+activate MyMemoryConnection
+MyMemoryConnection -> Connection:doGet(url:String, auth:String)
+activate Connection
+Connection-->MyMemoryConnection: response:String
+deactivate Connection
+MyMemoryConnection-->ConnectionService: translation:Translation
+deactivate MyMemoryConnection
+ConnectionService --> TranslationGenerator: targetContent:String
+else translationProvider = Bing Translation API
+
+ConnectionService -> MicrosoftTranslatorConnection: generateTranslation(parameters:HashMap)
+activate MicrosoftTranslatorConnection
+MicrosoftTranslatorConnection -> Connection:doGet(url:String, auth:String)
+activate Connection
+Connection-->MicrosoftTranslatorConnection: response:String
+deactivate Connection
+MicrosoftTranslatorConnection-->ConnectionService: translation:Translation
+deactivate MicrosoftTranslatorConnection
+ConnectionService --> TranslationGenerator: targetContent:String
+
+
+
+else translationProvider = Google Translation API
+ConnectionService -> GoogleTranslatorConnection: generateTranslation(parameters:HashMap)
+activate GoogleTranslatorConnection
+GoogleTranslatorConnection -> Connection:doGet(url:String, auth:String)
+activate Connection
+Connection-->GoogleTranslatorConnection: response:String
+deactivate Connection
+GoogleTranslatorConnection-->ConnectionService: translation:Translation
+deactivate GoogleTranslatorConnection
+ConnectionService --> TranslationGenerator: targetContent:String
+deactivate ConnectionService
+
+end
+
+TranslationGenerator --> user: target content:String
+deactivate TranslationGenerator
+deactivate user
+
+@enduml

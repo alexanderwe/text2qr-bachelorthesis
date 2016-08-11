@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+
+<!-- Begin page content -->
+<div class="container">
+    <div class="page-header">
+        <h1>Activation successful!</h1>
+    </div>
+    You successfully activated your account. You can start to use the client to generate translations.
+    Login into your account :<a th:href="@{/account}">Account</a>
+    <a href="/index">Back to home</a>
+
+</div>
+
+<div th:replace="fragments/template :: footer">...</div>
+
+</body>
+</html>

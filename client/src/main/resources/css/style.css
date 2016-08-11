@@ -1,0 +1,68 @@
+
+/* GENERAL
+-------------------------------------------------- */
+.root{
+    -fx-background-color:#ffffff;
+    primary-color: #009688;
+    primary-color-shade: #00786c;
+}
+
+/*MENU
+-------------------------------------------------- */
+
+.menu-bar { /* The menu bar itself */
+    -fx-background-color: primary-color;  /*Background color*/
+    -fx-min-height: 20px;
+ }
+
+ .menu-bar .label{/*Color of the menu label*/
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size:15px;
+ }
+
+.menu-button:hover { /*Hover over the menu*/
+    -fx-background-color:primary-color-shade;
+}
+
+.menu-item .label{  /*Labels of the submenu*/
+    -fx-text-fill: black;
+}
+
+.menu-item:focused{ /*Background color of sub menus when focused*/
+    -fx-background-color: primary-color-shade;
+}
+
+.menu-item:focused  .menu-button{
+    -fx-background-color:primary-color-shade;
+}
+
+.menu-item:focused .label{ /*Label of submwenu when focused*/
+    -fx-text-fill: #FFFFFF;
+}
+
+/*DIALOG PANE
+-------------------------------------------------- */
+.alertDialog{
+    -fx-background-color: #FFFFFF; /*Whole dialog*/
+}
+.alertDialog > *.button-bar > *.container{ /*Button container*/
+    -fx-background-color: #FFFFFF;
+}
+.alertDialog > *.label.content{ /*Content*/
+    -fx-font-size: 12px;
+}
+.alertDialog:header *.header-panel{  /*Header panel*/
+    -fx-background-color: primary-color;
+}
+.alertDialog:header *.header-panel *.label{ /*Header panel label*/
+    -fx-font-size: 18px;
+    -fx-text-fill: #FFFFFF;
+}
+
+/*Main view
+-------------------------------------------------- */
+
+.progress-indicator{
+    -fx-progress-color: primary-color;
+    -fx-max-height: 30px;
+}

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+	
+	
+<!-- Begin page content -->
+<div class="container">
+  <h1>Translations</h1>
+  Manages translation, to get, update, delete translation or post new translation        
+  
+  <div class="navbar-new">
+	  <h3> Available methods </h3>
+  	<ul class="nav nav-tabs">
+  		<li role="presentation" class="active" id="get_link" ><a href="#" onclick="changeView(this)" >Read</a></li>
+  		<li role="presentation" id="create_link"><a href="#" onclick="changeView(this)">Create</a></li>
+  		<li role="presentation" id="edit_link"><a href="#" onclick="changeView(this)">Edit</a></li>
+  		<li role="presentation" id="delete_link"><a href="#" onclick="changeView(this)">Delete</a></li>
+	</ul>
+  </div>
+  
+  
+  
+   <div class="action" id="get_all">
+	   <h2> Get information about all translations </h2>
+	   	<div class="alert alert-info" role="alert">GET api/translations</div>
+	   <div class="table-responsive">         
+		   <table class="table">
+			   <h4>Response body parameter</h4>
+		   		<thead>
+		   			<tr>
+		   				<th>Parameter</th>
+		   				<th>Type</th>
+		   				<th>Function</th>
+      				</tr>
+    			</thead>
+				<tbody>
+					<tr>
+						<td>translations</td>
+						<td>Array</td>
+						<td>An array of objects, each representing a translation</td>
+      				</tr>
+      			</tbody>
+  			</table>
+  		</div>
+  		
+  		
+  		<div class="panel panel-default">
+  			<div class="panel-heading">Example request</div>
+  			<div class="panel-body">
+  				<pre>GET api/translations HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Cache-Control: no-cache
+  </pre>
+  			</div>
+		</div><!--.panel-->	
+  		
+  		
+  		<div class="panel panel-default">
+  			<div class="panel-heading">Example response</div>
+  			<div class="panel-body">
+  				<pre>HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 26 Feb 2016 23:24:11 GMT
+Server: Apache-Coyote/1.1
+Transfer-Encoding: chunked
+
+[
+  {
+    "id": 3,
+    "fromContent": "Hallo",
+    "toContent": "Hello",
+    "fromLang": "de",
+    "toLang": "en",
+    "match": 0.85
+  },
+  {
+    "id": 4,
+    "fromContent": "Hallo!",
+    "toContent": "Hade!",
+    "fromLang": "de",
+    "toLang": "no",
+    "match": 1
+  },
+  {
+    "id": 5,
+    "fromContent": "Hallo",
+    "toContent": "Hello",
+    "fromLang": "de",
+    "toLang": "en",
+    "match": 1
+  },
+  {
+    "id": 6,
+    "fromContent": "Hallo",
+    "toContent": "Hello",
+    "fromLang": "en",
+    "toLang": "de",
+    "match": 0
+  },
+  {
+    "id": 7,
+    "fromContent": "Hallo",
+    "toContent": "Hello",
+    "fromLang": "de",
+    "toLang": "en",
+    "match": 1
+  }
+]</pre>
+  			</div>
+		</div><!--.panel-->
+  	</div>    <!--.action-->     
+  	
+  	
+   <div class="action" id="get_single">
+	   <h2> Get information about specific translation </h2>
+	   	<div class="alert alert-info" role="alert">GET api/translations/{id}</div>
+	   
+	   <div class="table-responsive">         
+		   <table class="table">
+			   <h4>Paths parameters</h4>
+		   		<thead>
+		   			<tr>
+		   				<th>Parameter</th>
+		   				<th>Function</th>
+      				</tr>
+    			</thead>
+				<tbody>
+					<tr>
+						<td>translation_id</td>
+						<td>The unique id for the translation</td>
+      				</tr>
+      			</tbody>
+  			</table>
+  		</div>
+	   
+	   
+	   <div class="table-responsive">         
+		   <table class="table">
+			   <h4>Response body parameter</h4>
+		   		<thead>
+		   			<tr>
+		   				<th>Parameter</th>
+		   				<th>Type</th>
+		   				<th>Function</th>
+      				</tr>
+    			</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>Integer</td>
+						<td>An integer that uniquely identifies this list</td>
+      				</tr>
+      				<tr>
+						<td>fromContent</td>
+						<td>String</td>
+						<td>The source text</td>
+      				</tr>
+      				<tr>
+						<td>fromContent</td>
+						<td>String</td>
+						<td>The translated text</td>
+      				</tr>
+      				<tr>
+						<td>fromLang</td>
+						<td>String</td>
+						<td>Language identifier for the source language</td>
+      				</tr>
+      				<tr>
+						<td>toLang</td>
+						<td>String</td>
+						<td>Language identifier for the target language</td>
+      				</tr>
+      				<tr>
+						<td>match</td>
+						<td>double</td>
+						<td>Identifier for how good the translation is</td>
+      				</tr>
+      			</tbody>
+  			</table>
+  		</div>
+  		
+  		  		<div class="panel panel-default">
+  			<div class="panel-heading">Example request</div>
+  			<div class="panel-body">
+  				<pre>GET api/translations/3 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Cache-Control: no-cache
+  </pre>
+  			</div>
+		</div><!--.panel-->	
+
+  		
+  		
+  		
+  		<div class="panel panel-default">
+  			<div class="panel-heading">Example response</div>
+  			<div class="panel-body">
+  				<pre>HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 26 Feb 2016 23:24:11 GMT
+Server: Apache-Coyote/1.1
+Transfer-Encoding: chunked
+
+{
+  "id": 3,
+  "fromContent": "Hallo",
+  "toContent": "Hello",
+  "fromLang": "de",
+  "toLang": "en",
+  "match": 0.85
+}
+  </pre>
+  			</div>
+		</div><!--.panel-->	
+  	</div>    <!--.action--> 
+  	
+  	
+  	 <div class="action invisible" id="post">
+	   <h2> Create a new translation </h2>
+	   	<div class="alert alert-success" role="alert">POST api/translations</div>
+	   
+	   <div class="table-responsive">         
+		   <table class="table">
+			   <h4>Request body parameter</h4>
+		   		<thead>
+		   			<tr>
+		   				<th>Parameter</th>
+		   				<th>Type</th>
+		   				<th>Function</th>
+      				</tr>
+    			</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>Integer</td>
+						<td>An integer that uniquely identifies this list</td>
+      				</tr>
+      				<tr>
+						<td>fromContent</td>
+						<td>String</td>
+						<td>The text which was translated</td>
+      				</tr>
+      				<tr>
+						<td>fromContent</td>
+						<td>String</td>
+						<td>The translated text</td>
+      				</tr>
+      				<tr>
+						<td>fromLang</td>
+						<td>String</td>
+						<td>Language identifier for the source language</td>
+      				</tr>
+      				<tr>
+						<td>toLang</td>
+						<td>String</td>
+						<td>Language identifier for the target language</td>
+      				</tr>
+      				<tr>
+						<td>match</td>
+						<td>double</td>
+						<td>Identifier for how good the translation is</td>
+      				</tr>
+      			</tbody>
+  			</table>
+  		</div>
+  		
+  		<div class="panel panel-default">
+  			<div class="panel-heading">Example request</div>
+  			<div class="panel-body">
+  				<pre>POST api/translations HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "fromContent": "Das Leben ist toll!",
+    "toContent": "The life is great!",
+    "fromLang": "en",
+    "toLang": "de",
+    "match": 0.96
+}  </pre>
+  			</div>
+		</div><!--.panel-->	
+		
+		<div class="panel panel-default">
+  			<div class="panel-heading">Example response</div>
+  			<div class="panel-body">
+  				<pre>HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 26 Feb 2016 23:24:11 GMT
+Server: Apache-Coyote/1.1
+Transfer-Encoding: chunked
+
+{
+  "id": 8,
+  "fromContent": "Das Leben ist cool!",
+  "toContent": "The life is great!",
+  "fromLang": "en",
+  "toLang": "de",
+  "match": 0.96
+}</pre>
+  			</div>
+		</div><!--.panel-->	
+
+  	</div>    <!--.action-->     
+  	
+  	
+  	
+  	<div class="action invisible" id="patch">
+	   <h2> Patch a existing translation </h2>
+	   	<div class="alert alert-warning" role="alert">Patch api/translations/{id}</div>
+	   
+	     <div class="table-responsive">         
+		   <table class="table">
+			   <h4>Paths parameters</h4>
+		   		<thead>
+		   			<tr>
+		   				<th>Parameter</th>
+		   				<th>Function</th>
+      				</tr>
+    			</thead>
+				<tbody>
+					<tr>
+						<td>translation_id</td>
+						<td>The unique id for the translation</td>
+      				</tr>
+      			</tbody>
+  			</table>
+  		</div>
+
+	   
+	   
+	   <div class="table-responsive">         
+		   <table class="table">
+			   <h4>Request body parameter</h4>
+		   		<thead>
+		   			<tr>
+		   				<th>Parameter</th>
+		   				<th>Type</th>
+		   				<th>Function</th>
+      				</tr>
+    			</thead>
+				<tbody>
+					<tr>
+						<td>id</td>
+						<td>Integer</td>
+						<td>An integer that uniquely identifies this list</td>
+      				</tr>
+      				<tr>
+						<td>fromContent</td>
+						<td>String</td>
+						<td>The text which was translated</td>
+      				</tr>
+      				<tr>
+						<td>fromContent</td>
+						<td>String</td>
+						<td>The translated text</td>
+      				</tr>
+      				<tr>
+						<td>fromLang</td>
+						<td>String</td>
+						<td>Language identifier for the source language</td>
+      				</tr>
+      				<tr>
+						<td>toLang</td>
+						<td>String</td>
+						<td>Language identifier for the target language</td>
+      				</tr>
+      				<tr>
+						<td>match</td>
+						<td>double</td>
+						<td>Identifier for how good the translation is</td>
+      				</tr>
+      			</tbody>
+  			</table>
+  		</div>
+  		
+  		<div class="panel panel-default">
+  			<div class="panel-heading">Example request</div>
+  			<div class="panel-body">
+  				<pre>PATCH api/translations/4 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Cache-Control: no-cache
+
+{
+    "match":1
+}</pre>
+  			</div>
+		</div><!--.panel-->	
+		
+		<div class="panel panel-default">
+  			<div class="panel-heading">Example response</div>
+  			<div class="panel-body">
+  				<pre>HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 26 Feb 2016 23:24:11 GMT
+Server: Apache-Coyote/1.1
+Transfer-Encoding: chunked
+
+{
+  "id": 4,
+  "fromContent": "Hallo!",
+  "toContent": "Hade!",
+  "fromLang": "de",
+  "toLang": "no",
+  "match": 1
+}</pre>
+  			</div>
+		</div><!--.panel-->	
+
+  	</div>    <!--.action-->     
+  	
+  	<div class="action invisible" id="delete">
+	   <h2> Delete a existing translation </h2>
+	   	<div class="alert alert-danger" role="alert">Delete api/translations/{id}</div>
+	   
+	     <div class="table-responsive">         
+		   <table class="table">
+			   <h4>Paths parameters</h4>
+		   		<thead>
+		   			<tr>
+		   				<th>Parameter</th>
+		   				<th>Function</th>
+      				</tr>
+    			</thead>
+				<tbody>
+					<tr>
+						<td>translation_id</td>
+						<td>The unique id for the translation</td>
+      				</tr>
+      			</tbody>
+  			</table>
+  		</div>
+  		  		
+  		<div class="panel panel-default">
+  			<div class="panel-heading">Example request</div>
+  			<div class="panel-body">
+  				<pre>DELETE api/translations/8 HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Cache-Control: no-cache
+</pre>
+  			</div>
+		</div><!--.panel-->	
+		
+		<div class="panel panel-default">
+  			<div class="panel-heading">Example response</div>
+  			<div class="panel-body">
+  				<pre>HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 26 Feb 2016 23:24:11 GMT
+Server: Apache-Coyote/1.1
+Transfer-Encoding: chunked
+
+Delete successfull</pre>
+  			</div>
+		</div><!--.panel-->	
+
+  	</div>    <!--.action-->   
+  	
+  	
+  	
+  	                                                                
+</div><!--.container-->
+
+<div th:replace="fragments/template :: footer">...</div>
+
+  <script>
+  	function changeView(buttonLink){
+	  	switch (buttonLink.innerHTML) {
+	  		case "Read":
+	  		$( "#get_link" ).addClass( "active" );
+	  		$( "#create_link" ).removeClass( "active" );
+	  		$( "#edit_link" ).removeClass( "active" );
+	  		$( "#delete_link" ).removeClass( "active" );
+	  		
+	  		$( "#get_all" ).removeClass( "invisible" );
+	  		$( "#get_single" ).removeClass( "invisible" );
+	  		$( "#post" ).addClass( "invisible" );
+	  		$( "#patch" ).addClass( "invisible" );
+	  		$( "#delete" ).addClass( "invisible" );
+	  		break;
+	  		
+	  		case "Create":
+	  		$( "#get_link" ).removeClass( "active" );
+	  		$( "#create_link" ).addClass( "active" );
+	  		$( "#edit_link" ).removeClass( "active" );
+	  		$( "#delete_link" ).removeClass( "active" );
+	  		
+	  		$( "#get_all" ).addClass( "invisible" );
+	  		$( "#get_single" ).addClass( "invisible" );
+	  		$( "#post" ).removeClass( "invisible" );
+	  		$( "#patch" ).addClass( "invisible" );
+	  		$( "#delete" ).addClass( "invisible" );
+	  		break;
+	  		
+	  		case "Edit":
+	  		$( "#get_link" ).removeClass( "active" );
+	  		$( "#create_link" ).removeClass( "active" );
+	  		$( "#edit_link" ).addClass( "active" );
+	  		$( "#delete_link" ).removeClass( "active" );
+	  		
+	  		$( "#get_all" ).addClass( "invisible" );
+	  		$( "#get_single" ).addClass( "invisible" );
+	  		$( "#post" ).addClass( "invisible" );
+	  		$( "#patch" ).removeClass( "invisible" );
+	  		$( "#delete" ).addClass( "invisible" );
+	  		
+	  		
+	  		break;
+	  		
+	  		case "Delete":
+	  		$( "#get_link" ).removeClass( "active" );
+	  		$( "#create_link" ).removeClass( "active" );
+	  		$( "#edit_link" ).removeClass( "active" );
+	  		$( "#delete_link" ).addClass( "active" );
+	  		
+	  		$( "#get_all" ).addClass( "invisible" );
+	  		$( "#get_single" ).addClass( "invisible" );
+	  		$( "#post" ).addClass( "invisible" );
+	  		$( "#patch" ).addClass( "invisible" );
+	  		$( "#delete" ).removeClass( "invisible" );
+	  		break;
+			default:break;
+		}
+  	}
+
+  </script>
+ 
+
+
+</body>
+</html>

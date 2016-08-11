@@ -1,0 +1,256 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto|Lato);
+
+ /* Sticky footer styles
+ -------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+/* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'Lato', sans-serif;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
+
+
+ /* Custom page CSS
+ -------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 60px 15px 0;
+    margin-bottom:15px;
+}
+    .container .text-muted {
+    margin: 20px 10px;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+.action {
+    margin-top: 50px;
+}
+
+.invisible {
+    display: none;
+}
+
+.navbar-new {
+    margin-top: 70px;
+}
+
+textarea {
+    resize: vertical;
+    height: 500px;
+    min-height:100px;
+}
+
+.input-group {
+    margin-bottom:20px;
+
+}
+
+ /* Navbar
+ -------------------------------------------------- */
+
+.navbar {
+    background-color:#009688;
+}
+
+.navbar-default .navbar-nav>li>a{  /*Link color*/
+    color:white;
+}
+
+.navbar-default .navbar-brand{  /*Brand text color*/
+    color:white;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{  /*active nav elements*/
+    background-color:#00786c;
+    color:white;
+ }
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{ /*Hover over nav elements*/
+    background-color:#00786c;
+    color:white;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{ /*active navbar open dropdown*/
+     background-color:#00786c;
+     color:white;
+}
+
+
+ /* Content
+ -------------------------------------------------- */
+.circle-translation-text{
+
+}
+
+.usage-element{
+    margin-right:40px;
+    float:left;
+    text-align:center;
+}
+
+/*refresh animation*/
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+    -moz-animation: spin3 .7s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes spin3 {
+    from { -moz-transform: rotate(0deg);}
+    to { -moz-transform: rotate(360deg);}
+
+}
+
+
+ /* Footer
+ -------------------------------------------------- */
+
+ footer{
+    padding-top: 20px;
+ }
+
+
+ /* Error page
+ -------------------------------------------------- */
+.error-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.error-actions {
+    margin-top:15px;
+    margin-bottom:15p
+ }
+.error-actions .btn {
+    margin-right:10px;
+}
+
+
+ /* Account
+ -------------------------------------------------- */
+
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+.users-table button{
+    margin-right:5px;
+}
+
+
+ /* Dashboard
+ -------------------------------------------------- */
+
+.dashboard-content{
+    margin-bottom:40px;
+}
+
+.dashboard-element-pre-header{
+    margin-bottom:40px;
+}
+
+.dashboard-table-element{
+    height:500px;
+    overflow-y: auto;
+}
+
+.translations-dashboard{
+    color:#F9690E;
+}
+
+.users-dashboard{
+    color:#19B5FE;
+}
+
+.charts-dashboard{
+    color:#4CAF50;
+}
+
+.element-count{
+    font-size:40px;
+    margin-left:20px;
+}
+
+ /* About
+ -------------------------------------------------- */
+
+.img-center{
+    margin: 0 auto;
+}
+
+ /* Download
+ -------------------------------------------------- */
+
+.btn-success{
+   background-color:#009688;
+}
+
+.btn-success:hover{
+    background-color:#00786c;
+}
+
+
+ /* Status
+ -------------------------------------------------- */
+
+.status-ok{
+    color:#4CAF50;
+}
+
+.status-error{
+    color:#F44336;
+}
+
+
+ /* Responisve
+ -------------------------------------------------- */
+@media (max-width: 767px) { /*Normal responsive mode*/
+
+
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a{
+        color:white;
+    }
+
+    .dropdown-header{
+        color:white;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar{
+        color:white;
+        background-color:white;
+    }
+
+}

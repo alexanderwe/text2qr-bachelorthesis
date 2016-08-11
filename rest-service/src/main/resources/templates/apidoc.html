@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<script th:replace="fragments/template :: cookiedisclaimer"></script>
+<head th:replace="fragments/template :: head"></head>
+
+<body th:inline="text">
+<div th:replace="fragments/template :: navbar">...</div>
+
+
+<!-- Begin page content -->
+<div class="container">
+  <h1>Overview</h1>
+      Quickly review all available resources for text2qr-translator API 1.0 with this reference overview                                                                                
+  <div class="table-responsive">         
+	  <h3>API Root</h3> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>HTTP method</th>
+        <th>Endpoint</th>
+        <th>Function</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="alert alert-info" role="alert">GET</div></td>
+        <td>/api</td>
+        <td>API Root</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  
+  <div class="table-responsive">         
+	  <h3>Translations</h3> 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>HTTP method</th>
+        <th>Endpoint</th>
+        <th>Function</th>
+      </tr>
+    </thead>
+    <tbody>
+	    
+      <tr>
+        <td><div class="alert alert-info" role="alert">GET</div></td>
+        <td><a th:href="@{/translationssite}">api/translations</a></td>
+        <td>Get a list of Translations</td>
+      </tr>
+      
+      <tr>
+        <td><div class="alert alert-info" role="alert">GET</div></td>
+        <td><a th:href="@{/translationssite}">api/translations/{translation_id}</a></td>
+        <td>Get information about a specific Translation</td>
+      </tr>
+      
+       <tr>
+        <td><div class="alert alert-success" role="alert">Post</div></td>
+        <td><a th:href="@{/translationssite}">api/translations</a></td>
+        <td>Create a new Translation</td>
+      </tr>
+     
+      <tr>
+        <td><div class="alert alert-warning" role="alert">Patch</div></td>
+        <td><a th:href="@{/translationssite}">api/translations/{translation_id}</a></td>
+        <td>Update a specific Translation</td>
+      </tr>
+      
+      <tr>
+        <td><div class="alert alert-danger" role="alert">Delete</div></td>
+        <td><a th:href="@{/translationssite}">api/translations/{translation_id}</a></td>
+        <td>Delete a specific Translation</td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+  </div>
+</div>
+
+
+<div th:replace="fragments/template :: footer">...</div>
+
+</body>
+</html>
